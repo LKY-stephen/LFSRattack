@@ -1,20 +1,22 @@
 #pragma once
 #include <iostream>
 #include "LFSR.h"
+
+#define SCAL 30
 using namespace std;
 int main()
 {
-	LFSR myLFSR=LFSR(30);
+	LFSR myLFSR=LFSR(SCAL);
 	string reg;
 	myLFSR.getreg(reg);
 	cout << reg<<endl;
-	for (int j = 0; j < 10; j++)
+	int outputscal = 1000;
+	int output = 0;
+	for (int j = 0; j < outputscal;)
 	{
-		for (int i = 0; i < 30; i++)
-		{
-			cout<<myLFSR.getnext();
-		}
-		cout <<endl;
+		output=myLFSR.getnext();
+		j = output ? j + 1: j;
+		cout << output;
 	}
 	return 0;
 }
